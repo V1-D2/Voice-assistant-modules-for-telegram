@@ -62,7 +62,7 @@ async def find_messages(channel):
 	startMsg = 0
 	limitMsg = 50
 
-	allMessages = []
+	allSelectedMessages = []
 	totalMessages = 0
 	noMoreMessages = 1000
 
@@ -85,15 +85,16 @@ async def find_messages(channel):
 			break
 		messages = history.messages
 		for message in messages:
-			allMessages.append(message.to_dict())
-			print(message.to_dict())
-		startMsg = messages[len(messages) - 1].id
-		totalMessages = len(allMessages)
+			if('message' in message.to_dict()):
+				if(specificStructure(message.to_dict()['message'])):
+					allSelectedMessages.append(message.to_dict())
+		startMsg += limitMsg
+		totalMessages += limitMsg
 		if noMoreMessages != 0 and totalMessages >= noMoreMessages:
 			break
 
 	with open('channel_messages.json', 'w', encoding='utf8') as outfile:
-		 json.dump(allMessages, outfile, ensure_ascii=False, cls=DateTimeEncoder)
+		 json.dump(allSelectedMessages, outfile, ensure_ascii=False, cls=DateTimeEncoder)
 
 
 async def main():
@@ -101,6 +102,18 @@ async def main():
 	channel = await client.get_entity(url)
 	#await find_participants(channel)
 	await find_messages(channel)
+
+def specificStructure(message):
+	fin = open("Special_Words.txt", "r")
+	listOfWords = [word for word in fin.readline().strip().split(", ")]
+
+	for i in range(len(listOfWords)):
+		if(listOfWords[i] in str(message)):
+			return True
+
+	return False
+
+
 
 
 with client:
