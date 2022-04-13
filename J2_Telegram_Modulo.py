@@ -2,6 +2,7 @@ import configparser
 import telethon
 import pyttsx3
 import speech_recognition as sr
+import pyautogui as pg
 
 from telethon import TelegramClient
 from telethon import sync
@@ -30,19 +31,16 @@ fin = open("User_Id.txt", "r")
 for line in fin:
     ar = [ i for i in line.strip().split(" = ")]
     baseOfUserId[ar[0]] = ar[1]
-print(baseOfUserId)
     
 
 
-#Important chats
-"""I will definitely answer this people"""
-@client.on(events.NewMessage(chats = ('Temaail')))
+@client.on(events.NewMessage(chats = ('DVueh')))
 async def normal_hundler(event):
     if(event.message.to_dict()['from_id']['user_id'] != int(my_id)):
         speak(event.message.to_dict()['message'])
         await getAnswer('Temaail', event.message.to_dict())
 
-@client.on(events.NewMessage(chats = ('mao_tira')))
+@client.on(events.NewMessage(chats = ('the_best_tm')))
 async def normal_hundler(event):
     if (event.message.to_dict()['from_id']['user_id'] != int(my_id)):
         speak(event.message.to_dict()['message'])
@@ -53,6 +51,51 @@ async def normal_hundler(event):
     if (event.message.to_dict()['from_id']['user_id'] != int(my_id)):
         speak(event.message.to_dict()['message'])
         await getAnswer('Diaall', event.message.to_dict())
+@client.on(events.NewMessage(chats = ('TBCbas')))
+async def normal_hundler(event):
+    if (event.message.to_dict()['from_id']['user_id'] != int(my_id)):
+        speak(event.message.to_dict()['message'])
+        await getAnswer('Diaall', event.message.to_dict())
+@client.on(events.NewMessage(chats = ('ternopilskaODA')))
+async def normal_hundler(event):
+    print(event.message)
+    message = event.message.to_dict()["message"].lower()
+    if("повітряна тривога" in message):
+        for i in range(3):
+            speak(event.message.to_dict()['message'])
+            speak("Все документы лежат на кушетке возле входной двери, или уже в гараже")
+    elif("відбій" in message):
+        for i in range(3):
+            speak("Подождите ещё 3 минуты и можете выходить")
+    elif("гуманітарна" in message or "допомога" in massage or "пенсі" in message):
+        for i in range(3):
+            speak("Есть важная информация о пенсиях или гуманитарной помощи")
+            speak(message)
+            speak("Я открою телеграм для уточнения")
+        try:
+            os.system(r'C:\"Users"\"Dell e7450"\"AppData"\"Roaming"\"Telegram Desktop"\Telegram.exe')
+        except:
+            speak("Попробую по другому")
+            try: os.startfile(r'c:\"Users"\"Dell e7450"\"AppData"\"Roaming"\"Telegram Desktop"\Telegram.exe')
+            except: speak("Напишите Вове, тут скорее всего ошибка или особенность системы")
+        finally: pg.sleep(2)
+        #open channel with notification
+        pg.click(130,80)
+        pg.sleep(3)
+        pr.typewrite(f"@ternopilskaODA")
+        pg.typewrite(['Enter'])
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #Functions
