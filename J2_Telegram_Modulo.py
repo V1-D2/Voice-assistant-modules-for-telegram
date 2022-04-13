@@ -38,13 +38,13 @@ for line in fin:
 async def normal_hundler(event):
     if(event.message.to_dict()['from_id']['user_id'] != int(my_id)):
         speak(event.message.to_dict()['message'])
-        await getAnswer('Temaail', event.message.to_dict())
+        await getAnswer('DVueh', event.message.to_dict())
 
 @client.on(events.NewMessage(chats = ('the_best_tm')))
 async def normal_hundler(event):
     if (event.message.to_dict()['from_id']['user_id'] != int(my_id)):
         speak(event.message.to_dict()['message'])
-        await getAnswer('mao_tira', event.message.to_dict())
+        await getAnswer('the_best_tm', event.message.to_dict())
 
 @client.on(events.NewMessage(chats = ('Diaall')))
 async def normal_hundler(event):
@@ -55,7 +55,7 @@ async def normal_hundler(event):
 async def normal_hundler(event):
     if (event.message.to_dict()['from_id']['user_id'] != int(my_id)):
         speak(event.message.to_dict()['message'])
-        await getAnswer('Diaall', event.message.to_dict())
+        await getAnswer('TBCbas', event.message.to_dict())
 @client.on(events.NewMessage(chats = ('ternopilskaODA')))
 async def normal_hundler(event):
     print(event.message)
@@ -84,6 +84,8 @@ async def normal_hundler(event):
         pg.sleep(3)
         pr.typewrite(f"@ternopilskaODA")
         pg.typewrite(['Enter'])
+
+
 
 
 
